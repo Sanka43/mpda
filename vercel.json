@@ -6,6 +6,7 @@
     }
   },
   "routes": [
+    { "src": "/", "dest": "/api/index.php?page=home" },
     { "handle": "filesystem" },
     { "src": "/(.*)", "dest": "/api/index.php" }
   ]
