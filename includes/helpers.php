@@ -1,7 +1,24 @@
 <?php
 
+function staticPageFilename(string $page, string $lang): string
+{
+    if ($page === 'home') {
+        return $lang === 'si' ? 'index-si.html' : 'index.html';
+    }
+
+    return $lang === 'si' ? "{$page}-si.html" : "{$page}.html";
+}
+
 function url(string $page = 'home', array $params = []): string
 {
+    if (defined('STATIC_BUILD') && STATIC_BUILD) {
+        $path = BASE_URL . '/' . staticPageFilename($page, currentLang());
+        if ($params) {
+            $path .= '?' . http_build_query($params);
+        }
+        return $path;
+    }
+
     if (BASE_URL === '') {
         $path = $page === 'home' ? '/' : '/' . $page;
         if ($params) {

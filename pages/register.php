@@ -8,7 +8,7 @@ $selectedBranch = (int)($_GET['branch'] ?? 0);
 
 $branches = getBranches();
 
-if (isPost()) {
+if ((!defined('STATIC_BUILD') || !STATIC_BUILD) && isPost()) {
     require __DIR__ . '/../api/submit-registration.php';
     exit;
 }
@@ -31,8 +31,8 @@ if (isPost()) {
             <div class="alert alert-error"><?= e($error) ?></div>
             <?php endif; ?>
 
-            <form method="POST" action="<?= url('register') ?>" id="registrationForm">
-                <?= csrfField() ?>
+            <form method="POST" action="<?= url('register') ?>" id="registrationForm"<?= (defined('STATIC_BUILD') && STATIC_BUILD) ? ' data-mpda-form="register"' : '' ?>>
+                <?php if (!defined('STATIC_BUILD') || !STATIC_BUILD): ?><?= csrfField() ?><?php endif; ?>
                 <div class="form-grid">
                     <div class="form-group">
                         <label for="student_name"><?= e(__('field_student_name')) ?> *</label>

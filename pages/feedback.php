@@ -7,7 +7,7 @@ $error = flash('feedback_error');
 
 $testimonials = getTestimonials();
 
-if (isPost() && verifyCsrf($_POST['csrf_token'] ?? '')) {
+if ((!defined('STATIC_BUILD') || !STATIC_BUILD) && isPost() && verifyCsrf($_POST['csrf_token'] ?? '')) {
     $parentName = trim($_POST['parent_name'] ?? '');
     $studentName = trim($_POST['student_name'] ?? '');
     $content = trim($_POST['content'] ?? '');
@@ -67,8 +67,8 @@ if (isPost() && verifyCsrf($_POST['csrf_token'] ?? '')) {
             <div class="alert alert-error"><?= e($error) ?></div>
             <?php endif; ?>
 
-            <form method="POST" action="<?= url('feedback') ?>">
-                <?= csrfField() ?>
+            <form method="POST" action="<?= url('feedback') ?>"<?= (defined('STATIC_BUILD') && STATIC_BUILD) ? ' data-mpda-form="feedback"' : '' ?>>
+                <?php if (!defined('STATIC_BUILD') || !STATIC_BUILD): ?><?= csrfField() ?><?php endif; ?>
                 <div class="form-grid">
                     <div class="form-group">
                         <label for="parent_name"><?= e(__('field_parent_name')) ?> *</label>

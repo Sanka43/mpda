@@ -31,5 +31,9 @@
 </footer>
 
 <script src="<?= asset('js/main.js') ?>"></script>
+<?php if (defined('STATIC_BUILD') && STATIC_BUILD): ?>
+<script>window.MPDA_WHATSAPP = '<?= e(CONTACT_WHATSAPP) ?>';</script>
+<script src="<?= asset('js/forms.js') ?>"></script>
+<?php endif; ?>
 </body>
 </html>

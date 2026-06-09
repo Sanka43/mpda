@@ -17,6 +17,12 @@ if (!in_array($_SESSION['lang'], $allowedLangs, true)) {
 
 $lang = require __DIR__ . '/../lang/' . $_SESSION['lang'] . '.php';
 
+function reloadLang(): void
+{
+    global $lang;
+    $lang = require __DIR__ . '/../lang/' . ($_SESSION['lang'] ?? 'en') . '.php';
+}
+
 /**
  * @return string|array<int|string, mixed>
  */
@@ -44,6 +50,11 @@ function currentLang(): string
 
 function langSwitchUrl(string $langCode): string
 {
+    if (defined('STATIC_BUILD') && STATIC_BUILD) {
+        $currentPage = $GLOBALS['page'] ?? 'home';
+        return BASE_URL . '/' . staticPageFilename($currentPage, $langCode);
+    }
+
     $params = $_GET;
     $params['lang'] = $langCode;
     if (isset($params['page'])) {

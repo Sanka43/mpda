@@ -5,7 +5,11 @@ $local = file_exists(__DIR__ . '/local.php') ? require __DIR__ . '/local.php' : 
 define('APP_NAME', 'Menaka Peiris Dancing Academy');
 define('APP_SHORT', 'MPDA');
 
-$defaultBaseUrl = getenv('VERCEL') ? '' : '/mpda';
+if (defined('STATIC_BUILD') && STATIC_BUILD) {
+    $defaultBaseUrl = '/mpda';
+} else {
+    $defaultBaseUrl = getenv('VERCEL') ? '' : '/mpda';
+}
 define('BASE_URL', $local['base_url'] ?? $defaultBaseUrl);
 define('DOMAIN', 'mpdancingacademy.com');
 

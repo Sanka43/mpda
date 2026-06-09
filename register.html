@@ -1,0 +1,221 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Menaka Peiris Dancing Academy — Sri Lankan traditional dance training across 10 branches. Udarata, Pahatharata &amp; Bollywood styles for ages 3–30.">
+    <meta name="keywords" content="dancing academy, Sri Lanka, traditional dance, Udarata, Pahatharata, Bollywood, Menaka Peiris">
+    <meta property="og:title" content="Menaka Peiris Dancing Academy">
+    <meta property="og:description" content="Menaka Peiris Dancing Academy — Sri Lankan traditional dance training across 10 branches. Udarata, Pahatharata &amp; Bollywood styles for ages 3–30.">
+    <meta property="og:type" content="website">
+    <meta property="og:url" content="https://mpdancingacademy.com">
+    <title>Menaka Peiris Dancing Academy | MPDA</title>
+    <link rel="icon" type="image/png" href="/mpda/assets/images/logo.png">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Playfair+Display:wght@500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="/mpda/assets/css/style.css">
+    </head>
+<body class="site-theme page-inner">
+<header class="site-header site-header--premium" id="siteHeader">
+    <div class="container header-inner">
+        <a href="/mpda/index.html" class="logo logo--text">
+            <img
+                src="/mpda/assets/images/logo.png"
+                alt=""
+                class="logo-icon"
+                width="44"
+                height="44"
+                decoding="async"
+            >
+            <span class="logo-wordmark">MPDA</span>
+        </a>
+
+        <nav class="header-nav" id="mainNav" aria-label="Main navigation">
+            <ul class="site-nav-list">
+                                <li>
+                    <a href="/mpda/about.html" class="">
+                        About Us                    </a>
+                </li>
+                                <li>
+                    <a href="/mpda/branches.html" class="">
+                        Classes                    </a>
+                </li>
+                                <li>
+                    <a href="/mpda/index.html#schedule" class="">
+                        Schedules                    </a>
+                </li>
+                                <li>
+                    <a href="/mpda/events.html" class="">
+                        Events                    </a>
+                </li>
+                                <li>
+                    <a href="/mpda/gallery.html" class="">
+                        Media                    </a>
+                </li>
+                                <li>
+                    <a href="/mpda/register.html" class="active">
+                        Registration                    </a>
+                </li>
+                            </ul>
+
+            <div class="header-nav-mobile">
+                <div class="lang-switch">
+                    <a href="/mpda/register.html" class="active">EN</a>
+                    <span>|</span>
+                    <a href="/mpda/register-si.html" class="">සිං</a>
+                </div>
+                <a href="/mpda/contact.html" class="btn btn-header-cta btn-header-cta--mobile">Contact</a>
+            </div>
+        </nav>
+
+        <div class="header-end">
+            <div class="lang-switch lang-switch--desktop">
+                <a href="/mpda/register.html" class="active">EN</a>
+                <span>|</span>
+                <a href="/mpda/register-si.html" class="">සිං</a>
+            </div>
+            <a href="/mpda/contact.html" class="btn btn-header-cta">Contact</a>
+        </div>
+
+        <button class="nav-toggle" id="navToggle" aria-label="Toggle navigation" aria-expanded="false" aria-controls="mainNav">
+            <span></span><span></span><span></span>
+        </button>
+    </div>
+</header>
+
+<div class="page-header">
+    <div class="container">
+        <h1>Student Registration</h1>
+        <p>Join our academy family. Fill in the form below and we will contact you shortly.</p>
+    </div>
+</div>
+
+<section>
+    <div class="container">
+        <div class="form-section fade-in">
+                        
+            <form method="POST" action="/mpda/register.html" id="registrationForm" data-mpda-form="register">
+                                <div class="form-grid">
+                    <div class="form-group">
+                        <label for="student_name">Student Name *</label>
+                        <input type="text" id="student_name" name="student_name" required maxlength="150">
+                    </div>
+                    <div class="form-group">
+                        <label for="parent_name">Parent / Guardian Name *</label>
+                        <input type="text" id="parent_name" name="parent_name" required maxlength="150">
+                    </div>
+                    <div class="form-group">
+                        <label for="gender">Gender *</label>
+                        <select id="gender" name="gender" required>
+                            <option value="">Select a branch</option>
+                            <option value="male">Male</option>
+                            <option value="female">Female</option>
+                            <option value="other">Other</option>
+                        </select>
+                    </div>
+                    <div class="form-group">
+                        <label for="age">Age *</label>
+                        <input type="number" id="age" name="age" required min="3" max="30">
+                    </div>
+                    <div class="form-group full-width">
+                        <label for="address">Address *</label>
+                        <input type="text" id="address" name="address" required maxlength="500">
+                    </div>
+                    <div class="form-group">
+                        <label for="phone">Phone Number *</label>
+                        <input type="tel" id="phone" name="phone" required maxlength="20">
+                    </div>
+                    <div class="form-group">
+                        <label for="school">School</label>
+                        <input type="text" id="school" name="school" maxlength="150">
+                    </div>
+                    <div class="form-group">
+                        <label for="student_dob">Student Birthday</label>
+                        <input type="date" id="student_dob" name="student_dob">
+                    </div>
+                    <div class="form-group">
+                        <label for="mother_dob">Mother&#039;s Birthday</label>
+                        <input type="date" id="mother_dob" name="mother_dob">
+                    </div>
+                    <div class="form-group">
+                        <label for="guardian_nic">Guardian NIC Number</label>
+                        <input type="text" id="guardian_nic" name="guardian_nic" maxlength="20">
+                    </div>
+                    <div class="form-group">
+                        <label for="guardian_job">Guardian&#039;s Job</label>
+                        <input type="text" id="guardian_job" name="guardian_job" maxlength="150">
+                    </div>
+                    <div class="form-group">
+                        <label for="emergency_phone">Emergency Contact Number *</label>
+                        <input type="tel" id="emergency_phone" name="emergency_phone" required maxlength="20">
+                    </div>
+                    <div class="form-group">
+                        <label for="preferred_branch_id">Preferred Branch *</label>
+                        <select id="preferred_branch_id" name="preferred_branch_id" required>
+                            <option value="">Select a branch</option>
+                                                        <option value="1" >
+                                Rathmalana — Wednesday                            </option>
+                                                        <option value="2" >
+                                Panadura — Thursday                            </option>
+                                                        <option value="3" >
+                                Kohuwala — Friday                            </option>
+                                                        <option value="4" >
+                                Piliyandala — Saturday                            </option>
+                                                        <option value="5" >
+                                Gampaha — Saturday                            </option>
+                                                        <option value="6" >
+                                Negombo — Saturday                            </option>
+                                                        <option value="7" >
+                                Kandy — Sunday                            </option>
+                                                        <option value="8" >
+                                Kurunegala — Sunday                            </option>
+                                                        <option value="9" >
+                                Anuradhapura — Sunday                            </option>
+                                                        <option value="10" >
+                                Kiribathgoda — Monday                            </option>
+                                                    </select>
+                    </div>
+                </div>
+                <button type="submit" class="btn btn-primary" style="margin-top:1.5rem;width:100%;">Submit Registration</button>
+            </form>
+        </div>
+    </div>
+</section>
+<footer class="home-footer">
+    <div class="container">
+        <div class="home-footer-grid">
+            <div class="home-footer-brand">
+                <h3>Menaka Peiris Academy</h3>
+                <p>Rooted in culture, discipline, and artistic excellence.</p>
+            </div>
+            <div class="home-footer-col">
+                <h4>Explore</h4>
+                <ul>
+                    <li><a href="/mpda/gallery.html">Gallery</a></li>
+                    <li><a href="/mpda/branches.html">Schedules</a></li>
+                    <li><a href="/mpda/teachers.html">Teachers</a></li>
+                    <li><a href="/mpda/founder.html">About Founder</a></li>
+                    <li><a href="/mpda/contact.html">Contact</a></li>
+                </ul>
+            </div>
+            <div class="home-footer-col">
+                <h4>Legal</h4>
+                <ul>
+                    <li><a href="/mpda/about.html">Privacy Policy</a></li>
+                    <li><a href="/mpda/about.html">Terms of Service</a></li>
+                    <li><a href="/mpda/register.html">Registration Policy</a></li>
+                </ul>
+            </div>
+        </div>
+        <div class="home-footer-bottom">
+            <p>&copy; 2026 Menaka Peiris Dancing Academy. All rights reserved.</p>
+        </div>
+    </div>
+</footer>
+
+<script src="/mpda/assets/js/main.js"></script>
+<script>window.MPDA_WHATSAPP = '0772454288';</script>
+<script src="/mpda/assets/js/forms.js"></script>
+</body>
+</html>

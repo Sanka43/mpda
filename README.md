@@ -6,7 +6,21 @@ Repository: https://github.com/Sanka43/mpda
 
 ---
 
-## Vercel Hosting (Recommended)
+## GitHub Pages
+
+Site URL: https://sanka43.github.io/mpda/
+
+GitHub Pages **PHP run කරන්නේ නැහ**. Static HTML files auto-generate වෙනවා:
+
+```bash
+php scripts/build-static.php
+```
+
+Push කළාම GitHub Actions workflow (`.github/workflows/pages.yml`) build කරලා deploy කරයි.
+
+---
+
+## Vercel Hosting (PHP)
 
 මේ project එක **database එකක් නැතුව** static data files use කරනවා. Vercel එකේ host කරන්න පුළුවන්.
 

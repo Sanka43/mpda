@@ -5,7 +5,7 @@ $metaDescription = __('contact_subtitle');
 $success = flash('contact_success');
 $error = flash('contact_error');
 
-if (isPost() && verifyCsrf($_POST['csrf_token'] ?? '')) {
+if ((!defined('STATIC_BUILD') || !STATIC_BUILD) && isPost() && verifyCsrf($_POST['csrf_token'] ?? '')) {
     $name = trim($_POST['name'] ?? '');
     $email = trim($_POST['email'] ?? '');
     $phone = trim($_POST['phone'] ?? '');
@@ -84,8 +84,8 @@ if (isPost() && verifyCsrf($_POST['csrf_token'] ?? '')) {
                 <div class="alert alert-error"><?= e($error) ?></div>
                 <?php endif; ?>
 
-                <form method="POST" action="<?= url('contact') ?>">
-                    <?= csrfField() ?>
+                <form method="POST" action="<?= url('contact') ?>"<?= (defined('STATIC_BUILD') && STATIC_BUILD) ? ' data-mpda-form="contact"' : '' ?>>
+                    <?php if (!defined('STATIC_BUILD') || !STATIC_BUILD): ?><?= csrfField() ?><?php endif; ?>
                     <div class="form-group" style="margin-bottom:1.25rem;">
                         <label for="name"><?= e(__('field_name')) ?> *</label>
                         <input type="text" id="name" name="name" required>
