@@ -1,9 +1,11 @@
 <?php
 
-define('DB_HOST', 'localhost');
-define('DB_NAME', 'mpda_db');
-define('DB_USER', 'root');
-define('DB_PASS', '');
+$local = file_exists(__DIR__ . '/local.php') ? require __DIR__ . '/local.php' : [];
+
+define('DB_HOST', $local['db_host'] ?? 'localhost');
+define('DB_NAME', $local['db_name'] ?? 'mpda_db');
+define('DB_USER', $local['db_user'] ?? 'root');
+define('DB_PASS', $local['db_pass'] ?? '');
 
 function getDB(): PDO
 {

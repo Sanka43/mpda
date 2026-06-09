@@ -1,8 +1,10 @@
-    <?php
+<?php
+
+$local = file_exists(__DIR__ . '/local.php') ? require __DIR__ . '/local.php' : [];
 
 define('APP_NAME', 'Menaka Peiris Dancing Academy');
 define('APP_SHORT', 'MPDA');
-define('BASE_URL', '/mpda');
+define('BASE_URL', $local['base_url'] ?? '/mpda');
 define('DOMAIN', 'mpdancingacademy.com');
 
 define('CONTACT_PHONE', '0112612560');
