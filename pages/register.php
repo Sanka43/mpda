@@ -6,12 +6,7 @@ $success = flash('register_success');
 $error = flash('register_error');
 $selectedBranch = (int)($_GET['branch'] ?? 0);
 
-try {
-    $db = getDB();
-    $branches = getBranches($db);
-} catch (Exception $e) {
-    $branches = [];
-}
+$branches = getBranches();
 
 if (isPost()) {
     require __DIR__ . '/../api/submit-registration.php';

@@ -12,8 +12,8 @@ $age = (int)($_POST['age'] ?? 0);
 $address = trim($_POST['address'] ?? '');
 $phone = trim($_POST['phone'] ?? '');
 $school = trim($_POST['school'] ?? '');
-$studentDob = $_POST['student_dob'] ?? null;
-$motherDob = $_POST['mother_dob'] ?? null;
+$studentDob = $_POST['student_dob'] ?? '';
+$motherDob = $_POST['mother_dob'] ?? '';
 $guardianNic = trim($_POST['guardian_nic'] ?? '');
 $guardianJob = trim($_POST['guardian_job'] ?? '');
 $emergencyPhone = trim($_POST['emergency_phone'] ?? '');
@@ -29,36 +29,26 @@ if (
     redirect('register');
 }
 
-if ($studentDob === '') $studentDob = null;
-if ($motherDob === '') $motherDob = null;
-
-try {
-    $db = getDB();
-
-    $branchCheck = $db->prepare('SELECT id FROM branches WHERE id = ? AND is_active = 1');
-    $branchCheck->execute([$branchId]);
-    if (!$branchCheck->fetch()) {
-        flash('register_error', __('register_error'));
-        redirect('register');
-    }
-
-    $stmt = $db->prepare('
-        INSERT INTO registrations (
-            student_name, parent_name, gender, age, address, phone, school,
-            student_dob, mother_dob, guardian_nic, guardian_job, emergency_phone,
-            preferred_branch_id
-        ) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)
-    ');
-
-    $stmt->execute([
-        $studentName, $parentName, $gender, $age, $address, $phone,
-        $school ?: null, $studentDob, $motherDob,
-        $guardianNic ?: null, $guardianJob ?: null, $emergencyPhone, $branchId
-    ]);
-
-    flash('register_success', __('register_success'));
-    redirect('register');
-} catch (Exception $e) {
+$branch = getBranchById($branchId);
+if (!$branch) {
     flash('register_error', __('register_error'));
     redirect('register');
 }
+
+$message = "MPDA Registration\n\n"
+    . "Student: {$studentName}\n"
+    . "Parent: {$parentName}\n"
+    . "Gender: {$gender}\n"
+    . "Age: {$age}\n"
+    . "Address: {$address}\n"
+    . "Phone: {$phone}\n"
+    . "Emergency: {$emergencyPhone}\n"
+    . "School: " . ($school ?: 'N/A') . "\n"
+    . "Student DOB: " . ($studentDob ?: 'N/A') . "\n"
+    . "Mother DOB: " . ($motherDob ?: 'N/A') . "\n"
+    . "Guardian NIC: " . ($guardianNic ?: 'N/A') . "\n"
+    . "Guardian Job: " . ($guardianJob ?: 'N/A') . "\n"
+    . "Branch: {$branch['name']} ({$branch['day_of_week']})";
+
+header('Location: ' . whatsappUrl($message));
+exit;

@@ -2,12 +2,7 @@
 $pageTitle = __('branches_title');
 $metaDescription = __('branches_subtitle');
 
-try {
-    $db = getDB();
-    $branches = getBranches($db);
-} catch (Exception $e) {
-    $branches = [];
-}
+$branches = getBranches();
 ?>
 
 <div class="page-header">

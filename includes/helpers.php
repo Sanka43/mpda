@@ -2,8 +2,21 @@
 
 function url(string $page = 'home', array $params = []): string
 {
+    if (BASE_URL === '') {
+        $path = $page === 'home' ? '/' : '/' . $page;
+        if ($params) {
+            $path .= '?' . http_build_query($params);
+        }
+        return $path;
+    }
+
     $query = http_build_query(array_merge(['page' => $page], $params));
     return BASE_URL . '/index.php?' . $query;
+}
+
+function whatsappUrl(string $message): string
+{
+    return 'https://wa.me/94' . ltrim(CONTACT_WHATSAPP, '0') . '?text=' . rawurlencode($message);
 }
 
 function asset(string $path): string
@@ -83,19 +96,6 @@ function verifyCsrf(?string $token): bool
 function csrfField(): string
 {
     return '<input type="hidden" name="csrf_token" value="' . e(csrfToken()) . '">';
-}
-
-function isAdminLoggedIn(): bool
-{
-    return !empty($_SESSION['admin_logged_in']);
-}
-
-function requireAdmin(): void
-{
-    if (!isAdminLoggedIn()) {
-        header('Location: ' . BASE_URL . '/admin/login.php');
-        exit;
-    }
 }
 
 function flash(string $key, ?string $message = null): ?string

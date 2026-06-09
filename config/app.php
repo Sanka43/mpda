@@ -4,7 +4,9 @@ $local = file_exists(__DIR__ . '/local.php') ? require __DIR__ . '/local.php' : 
 
 define('APP_NAME', 'Menaka Peiris Dancing Academy');
 define('APP_SHORT', 'MPDA');
-define('BASE_URL', $local['base_url'] ?? '/mpda');
+
+$defaultBaseUrl = getenv('VERCEL') ? '' : '/mpda';
+define('BASE_URL', $local['base_url'] ?? $defaultBaseUrl);
 define('DOMAIN', 'mpdancingacademy.com');
 
 define('CONTACT_PHONE', '0112612560');
@@ -19,6 +21,3 @@ define('SOCIAL_INSTAGRAM', 'https://www.instagram.com/menaka_peiris_dancing_acad
 define('SOCIAL_TIKTOK', 'https://www.tiktok.com/@menaka.peiris');
 define('SOCIAL_YOUTUBE', 'https://youtube.com/@menakapeirisdancing?si=_4Rh8JmNV-qEb2EG');
 define('SOCIAL_WHATSAPP_CHANNEL', 'https://whatsapp.com/channel/0029VbCdx1A3LdQZsTm7dS1x');
-
-define('ADMIN_USERNAME', 'admin');
-define('ADMIN_PASSWORD', 'mpda2026');

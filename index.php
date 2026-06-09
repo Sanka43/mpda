@@ -8,6 +8,15 @@ $allowedPages = [
 ];
 
 $page = $_GET['page'] ?? 'home';
+
+if ($page === 'home' && !empty($_SERVER['REQUEST_URI'])) {
+    $path = parse_url($_SERVER['REQUEST_URI'], PHP_URL_PATH) ?? '';
+    $path = trim($path, '/');
+    if ($path && $path !== 'index.php' && $path !== 'api/index.php' && !str_starts_with($path, 'assets/')) {
+        $page = $path;
+    }
+}
+
 if (!in_array($page, $allowedPages, true)) {
     $page = 'home';
 }

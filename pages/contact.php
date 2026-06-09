@@ -13,16 +13,15 @@ if (isPost() && verifyCsrf($_POST['csrf_token'] ?? '')) {
     $message = trim($_POST['message'] ?? '');
 
     if ($name && $email && $message && filter_var($email, FILTER_VALIDATE_EMAIL)) {
-        try {
-            $db = getDB();
-            $stmt = $db->prepare('INSERT INTO contact_messages (name, email, phone, subject, message) VALUES (?, ?, ?, ?, ?)');
-            $stmt->execute([$name, $email, $phone, $subject, $message]);
-            flash('contact_success', __('contact_success'));
-            redirect('contact');
-        } catch (Exception $e) {
-            flash('contact_error', __('register_error'));
-            redirect('contact');
-        }
+        $waMessage = "MPDA Contact Message\n\n"
+            . "Name: {$name}\n"
+            . "Email: {$email}\n"
+            . "Phone: " . ($phone ?: 'N/A') . "\n"
+            . "Subject: " . ($subject ?: 'N/A') . "\n\n"
+            . $message;
+
+        header('Location: ' . whatsappUrl($waMessage));
+        exit;
     } else {
         flash('contact_error', __('register_error'));
         redirect('contact');

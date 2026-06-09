@@ -1,58 +1,72 @@
 <?php
 
-function getBranches(PDO $db): array
+function loadDataFile(string $file): array
 {
-    try {
-        $stmt = $db->query('SELECT * FROM branches WHERE is_active = 1 ORDER BY sort_order ASC');
-        return $stmt->fetchAll();
-    } catch (Exception $e) {
+    $path = __DIR__ . '/../data/' . $file . '.php';
+    if (!file_exists($path)) {
         return [];
     }
+
+    return require $path;
 }
 
-function getFeaturedEvent(PDO $db): ?array
+function getBranches(): array
 {
-    try {
-        $stmt = $db->query('SELECT * FROM events WHERE is_active = 1 AND is_featured = 1 ORDER BY event_date ASC LIMIT 1');
-        $event = $stmt->fetch();
-        return $event ?: null;
-    } catch (Exception $e) {
-        return null;
-    }
+    $branches = loadDataFile('branches');
+    $active = array_filter($branches, fn($b) => !empty($b['is_active']));
+
+    usort($active, fn($a, $b) => ($a['sort_order'] ?? 0) <=> ($b['sort_order'] ?? 0));
+
+    return array_values($active);
 }
 
-function getEvents(PDO $db): array
+function getBranchById(int $id): ?array
 {
-    try {
-        $stmt = $db->query('SELECT * FROM events WHERE is_active = 1 ORDER BY event_date ASC');
-        return $stmt->fetchAll();
-    } catch (Exception $e) {
-        return [];
+    foreach (getBranches() as $branch) {
+        if ((int)$branch['id'] === $id) {
+            return $branch;
+        }
     }
+
+    return null;
 }
 
-function getTestimonials(PDO $db, int $limit = 10): array
+function getFeaturedEvent(): ?array
 {
-    try {
-        $stmt = $db->prepare('SELECT * FROM testimonials WHERE is_approved = 1 ORDER BY created_at DESC LIMIT ?');
-        $stmt->bindValue(1, $limit, PDO::PARAM_INT);
-        $stmt->execute();
-        return $stmt->fetchAll();
-    } catch (Exception $e) {
-        return [];
+    foreach (loadDataFile('events') as $event) {
+        if (!empty($event['is_active']) && !empty($event['is_featured'])) {
+            return $event;
+        }
     }
+
+    return null;
 }
 
-function getBlogPosts(PDO $db, int $limit = 10): array
+function getEvents(): array
 {
-    try {
-        $stmt = $db->prepare('SELECT * FROM blog_posts WHERE is_published = 1 ORDER BY published_at DESC LIMIT ?');
-        $stmt->bindValue(1, $limit, PDO::PARAM_INT);
-        $stmt->execute();
-        return $stmt->fetchAll();
-    } catch (Exception $e) {
-        return [];
-    }
+    $events = array_filter(loadDataFile('events'), fn($e) => !empty($e['is_active']));
+
+    usort($events, fn($a, $b) => strcmp($a['event_date'] ?? '', $b['event_date'] ?? ''));
+
+    return array_values($events);
+}
+
+function getTestimonials(int $limit = 10): array
+{
+    $items = array_filter(loadDataFile('testimonials'), fn($t) => !empty($t['is_approved']));
+
+    usort($items, fn($a, $b) => strcmp($b['created_at'] ?? '', $a['created_at'] ?? ''));
+
+    return array_slice(array_values($items), 0, $limit);
+}
+
+function getBlogPosts(int $limit = 10): array
+{
+    $posts = array_filter(loadDataFile('blog'), fn($p) => !empty($p['is_published']));
+
+    usort($posts, fn($a, $b) => strcmp($b['published_at'] ?? '', $a['published_at'] ?? ''));
+
+    return array_slice(array_values($posts), 0, $limit);
 }
 
 function formatBranchTime(string $start, string $end): string

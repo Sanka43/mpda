@@ -2,12 +2,7 @@
 $pageTitle = __('events_title');
 $metaDescription = __('events_subtitle');
 
-try {
-    $db = getDB();
-    $events = getEvents($db);
-} catch (Exception $e) {
-    $events = [];
-}
+$events = getEvents();
 ?>
 
 <div class="page-header">

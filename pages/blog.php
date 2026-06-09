@@ -2,12 +2,7 @@
 $pageTitle = __('blog_title');
 $metaDescription = __('blog_subtitle');
 
-try {
-    $db = getDB();
-    $posts = getBlogPosts($db);
-} catch (Exception $e) {
-    $posts = [];
-}
+$posts = getBlogPosts();
 ?>
 
 <div class="page-header">

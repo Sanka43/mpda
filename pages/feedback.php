@@ -5,12 +5,7 @@ $metaDescription = __('feedback_subtitle');
 $success = flash('feedback_success');
 $error = flash('feedback_error');
 
-try {
-    $db = getDB();
-    $testimonials = getTestimonials($db);
-} catch (Exception $e) {
-    $testimonials = [];
-}
+$testimonials = getTestimonials();
 
 if (isPost() && verifyCsrf($_POST['csrf_token'] ?? '')) {
     $parentName = trim($_POST['parent_name'] ?? '');
@@ -19,19 +14,18 @@ if (isPost() && verifyCsrf($_POST['csrf_token'] ?? '')) {
     $rating = min(5, max(1, (int)($_POST['rating'] ?? 5)));
 
     if ($parentName && $content) {
-        try {
-            $stmt = $db->prepare('INSERT INTO testimonials (parent_name, student_name, content_en, content_si, rating, is_approved) VALUES (?, ?, ?, ?, ?, 0)');
-            $stmt->execute([$parentName, $studentName ?: null, $content, $content, $rating]);
-            flash('feedback_success', __('feedback_success'));
-            redirect('feedback');
-        } catch (Exception $e) {
-            flash('feedback_error', __('register_error'));
-            redirect('feedback');
-        }
-    } else {
-        flash('feedback_error', __('register_error'));
-        redirect('feedback');
+        $message = "MPDA Parent Feedback\n\n"
+            . "Parent: {$parentName}\n"
+            . "Student: " . ($studentName ?: 'N/A') . "\n"
+            . "Rating: {$rating}/5\n\n"
+            . $content;
+
+        header('Location: ' . whatsappUrl($message));
+        exit;
     }
+
+    flash('feedback_error', __('register_error'));
+    redirect('feedback');
 }
 ?>
 

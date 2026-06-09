@@ -2,14 +2,8 @@
 $pageTitle = __('home_hero_title');
 $metaDescription = __('meta_description');
 
-try {
-    $db = getDB();
-    $branches = getBranches($db);
-    $featuredEvent = getFeaturedEvent($db);
-} catch (Exception $e) {
-    $branches = [];
-    $featuredEvent = null;
-}
+$branches = getBranches();
+$featuredEvent = getFeaturedEvent();
 
 $studioBranches = array_slice($branches, 0, 5);
 
