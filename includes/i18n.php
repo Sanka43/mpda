@@ -52,13 +52,12 @@ function langSwitchUrl(string $langCode): string
 {
     if (defined('STATIC_BUILD') && STATIC_BUILD) {
         $currentPage = $GLOBALS['page'] ?? 'home';
-        return BASE_URL . '/' . staticPageFilename($currentPage, $langCode);
+        return rtrim(BASE_URL, '/') . '/' . staticPageUrl($currentPage, $langCode);
     }
 
+    $currentPage = $GLOBALS['page'] ?? ($_GET['page'] ?? 'home');
     $params = $_GET;
+    unset($params['page']);
     $params['lang'] = $langCode;
-    if (isset($params['page'])) {
-        return BASE_URL . '/index.php?' . http_build_query($params);
-    }
-    return BASE_URL . '/index.php?page=' . ($params['page'] ?? 'home') . '&lang=' . $langCode;
+    return url($currentPage, $params);
 }

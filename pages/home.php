@@ -148,9 +148,6 @@ $eventVenue = $featuredEvent['venue'] ?? 'Sugathadasa Stadium';
                 </div>
                 <h3 class="home-team-card__name"><?= e($member['name'] ?? '') ?></h3>
                 <p class="home-team-card__role"><?= e($member['role'] ?? '') ?></p>
-                <?php if (!empty($member['meta'])): ?>
-                <p class="home-team-card__meta"><?= e($member['meta']) ?></p>
-                <?php endif; ?>
             </article>
             <?php endforeach; ?>
         </div>
@@ -178,9 +175,6 @@ $eventVenue = $featuredEvent['venue'] ?? 'Sugathadasa Stadium';
                 </div>
                 <h3 class="home-team-card__name"><?= e($member['name'] ?? '') ?></h3>
                 <p class="home-team-card__role"><?= e($member['role'] ?? '') ?></p>
-                <?php if (!empty($member['meta'])): ?>
-                <p class="home-team-card__meta"><?= e($member['meta']) ?></p>
-                <?php endif; ?>
             </article>
             <?php endforeach; ?>
         </div>

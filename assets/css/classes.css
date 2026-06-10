@@ -1,0 +1,326 @@
+/* Classes & Schedules page */
+
+.page-classes .page-header {
+    display: none;
+}
+
+.classes-hero {
+    padding: 5rem 0 4rem;
+    text-align: center;
+    background: #000;
+}
+
+.classes-hero__label {
+    display: block;
+    font-size: 0.68rem;
+    font-weight: 600;
+    letter-spacing: 0.22em;
+    text-transform: uppercase;
+    color: var(--gold);
+    margin-bottom: 1.25rem;
+}
+
+.classes-hero h1 {
+    font-family: var(--font-serif);
+    font-size: clamp(2.25rem, 5vw, 3.5rem);
+    font-weight: 600;
+    color: #fff;
+    margin-bottom: 1rem;
+}
+
+.classes-hero__intro {
+    max-width: 640px;
+    margin: 0 auto;
+    color: var(--text-muted);
+    font-size: 1.05rem;
+    line-height: 1.7;
+}
+
+.classes-section {
+    padding: 4.5rem 0;
+    background: #000;
+}
+
+.classes-section--alt {
+    background: var(--black-soft);
+}
+
+.classes-disciplines__intro {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 2.5rem;
+    align-items: start;
+    margin-bottom: 3rem;
+}
+
+.classes-disciplines__intro h2 {
+    font-family: var(--font-serif);
+    font-size: clamp(1.75rem, 3vw, 2.25rem);
+    color: #fff;
+    margin-bottom: 0.75rem;
+}
+
+.classes-disciplines__line {
+    width: 48px;
+    height: 2px;
+    background: var(--gold);
+}
+
+.classes-disciplines__intro p {
+    color: var(--text-muted);
+    font-size: 0.95rem;
+    line-height: 1.75;
+    max-width: 420px;
+    margin-left: auto;
+}
+
+.classes-disciplines__grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 1.25rem;
+}
+
+.classes-discipline-card {
+    background: var(--black-card);
+    border: 1px solid rgba(255, 255, 255, 0.06);
+    border-radius: 2px;
+    overflow: hidden;
+    display: flex;
+    flex-direction: column;
+}
+
+.classes-discipline-card__image {
+    aspect-ratio: 4 / 3;
+    overflow: hidden;
+}
+
+.classes-discipline-card__image img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    transition: transform 0.5s ease;
+}
+
+.classes-discipline-card:hover .classes-discipline-card__image img {
+    transform: scale(1.04);
+}
+
+.classes-discipline-card__body {
+    padding: 1.35rem 1.35rem 1.5rem;
+    display: flex;
+    flex-direction: column;
+    flex: 1;
+}
+
+.classes-discipline-card__body h3 {
+    font-family: var(--font-serif);
+    font-size: 1.35rem;
+    color: var(--gold);
+    margin-bottom: 0.65rem;
+}
+
+.classes-discipline-card__body p {
+    color: var(--text-muted);
+    font-size: 0.88rem;
+    line-height: 1.65;
+    flex: 1;
+    margin-bottom: 1.25rem;
+}
+
+.classes-discipline-card__tag {
+    font-size: 0.62rem;
+    font-weight: 700;
+    letter-spacing: 0.16em;
+    text-transform: uppercase;
+    color: var(--gold);
+}
+
+.classes-schedule__header {
+    text-align: center;
+    margin-bottom: 2.5rem;
+}
+
+.classes-schedule__header h2 {
+    font-family: var(--font-serif);
+    font-size: clamp(1.75rem, 3vw, 2.25rem);
+    color: #fff;
+    margin-bottom: 0.65rem;
+}
+
+.classes-schedule__header p {
+    color: var(--text-muted);
+    font-size: 0.95rem;
+}
+
+.classes-table-wrap {
+    overflow-x: auto;
+    border: 1px solid rgba(255, 255, 255, 0.08);
+    border-radius: 2px;
+    background: var(--black-card);
+}
+
+.classes-table {
+    width: 100%;
+    border-collapse: collapse;
+    min-width: 720px;
+}
+
+.classes-table th,
+.classes-table td {
+    padding: 1rem 1.25rem;
+    text-align: left;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.06);
+}
+
+.classes-table th {
+    font-size: 0.68rem;
+    font-weight: 700;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    color: rgba(255, 255, 255, 0.45);
+    background: rgba(255, 255, 255, 0.03);
+}
+
+.classes-table td {
+    font-size: 0.92rem;
+    color: rgba(255, 255, 255, 0.85);
+}
+
+.classes-table tbody tr:last-child td {
+    border-bottom: none;
+}
+
+.classes-table tbody tr:hover {
+    background: rgba(201, 162, 39, 0.04);
+}
+
+.classes-table__branch {
+    font-weight: 600;
+    color: #fff;
+}
+
+.classes-table__join {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.35rem;
+    font-size: 0.72rem;
+    font-weight: 700;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    color: var(--gold);
+    white-space: nowrap;
+}
+
+.classes-table__join:hover {
+    color: var(--gold-light);
+}
+
+.classes-cta {
+    padding: 4rem 0 5.5rem;
+    background: #000;
+}
+
+.classes-cta__box {
+    max-width: 720px;
+    margin: 0 auto;
+    padding: 3rem 2.5rem;
+    text-align: center;
+    background: var(--black-card);
+    border: 1px solid rgba(255, 255, 255, 0.08);
+    border-radius: 2px;
+}
+
+.classes-cta__box h2 {
+    font-family: var(--font-serif);
+    font-size: clamp(1.5rem, 3vw, 2rem);
+    color: #fff;
+    margin-bottom: 0.85rem;
+}
+
+.classes-cta__box p {
+    color: var(--text-muted);
+    font-size: 0.95rem;
+    line-height: 1.7;
+    margin-bottom: 2rem;
+    max-width: 520px;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+.classes-cta__actions {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 1rem;
+}
+
+.classes-cta__actions .btn-gold {
+    padding: 0.85rem 1.75rem;
+    background: var(--gold);
+    color: #000;
+    font-size: 0.72rem;
+    font-weight: 700;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    border-radius: 2px;
+    border: 2px solid var(--gold);
+    transition: all 0.3s ease;
+}
+
+.classes-cta__actions .btn-gold:hover {
+    background: var(--gold-light);
+    border-color: var(--gold-light);
+}
+
+.classes-cta__actions .btn-outline {
+    padding: 0.85rem 1.75rem;
+    background: transparent;
+    color: #fff;
+    font-size: 0.72rem;
+    font-weight: 700;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    border-radius: 2px;
+    border: 2px solid rgba(255, 255, 255, 0.35);
+    transition: all 0.3s ease;
+}
+
+.classes-cta__actions .btn-outline:hover {
+    border-color: var(--gold);
+    color: var(--gold);
+}
+
+@media (max-width: 900px) {
+    .classes-disciplines__intro {
+        grid-template-columns: 1fr;
+        gap: 1.25rem;
+    }
+
+    .classes-disciplines__intro p {
+        margin-left: 0;
+        max-width: none;
+    }
+
+    .classes-disciplines__grid {
+        grid-template-columns: 1fr;
+    }
+}
+
+@media (max-width: 640px) {
+    .classes-hero {
+        padding: 4rem 0 3rem;
+    }
+
+    .classes-cta__box {
+        padding: 2rem 1.25rem;
+    }
+
+    .classes-cta__actions {
+        flex-direction: column;
+        align-items: stretch;
+    }
+
+    .classes-cta__actions a {
+        text-align: center;
+    }
+}

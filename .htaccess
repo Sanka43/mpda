@@ -1,5 +1,10 @@
+DirectorySlash Off
+
 RewriteEngine On
 RewriteBase /mpda/
+
+# Route PHP pages even when a matching static directory exists (e.g. register/)
+RewriteRule ^(about|branches|gallery|events|teachers|register|contact|blog|founder|feedback)/?$ index.php?page=$1 [L,QSA,END]
 
 RewriteCond %{REQUEST_FILENAME} !-f
 RewriteCond %{REQUEST_FILENAME} !-d

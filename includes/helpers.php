@@ -1,34 +1,49 @@
 <?php
 
-function staticPageFilename(string $page, string $lang): string
+function staticPagePath(string $page, string $lang): string
 {
     if ($page === 'home') {
-        return $lang === 'si' ? 'index-si.html' : 'index.html';
+        return $lang === 'si' ? 'si/index.html' : 'index.html';
     }
 
-    return $lang === 'si' ? "{$page}-si.html" : "{$page}.html";
+    return $lang === 'si' ? "si/{$page}/index.html" : "{$page}/index.html";
+}
+
+/** @deprecated Use staticPagePath() */
+function staticPageFilename(string $page, string $lang): string
+{
+    return staticPagePath($page, $lang);
+}
+
+function staticPageUrl(string $page, string $lang): string
+{
+    if ($page === 'home') {
+        return $lang === 'si' ? 'si/' : '';
+    }
+
+    return $lang === 'si' ? "si/{$page}/" : "{$page}/";
 }
 
 function url(string $page = 'home', array $params = []): string
 {
     if (defined('STATIC_BUILD') && STATIC_BUILD) {
-        $path = BASE_URL . '/' . staticPageFilename($page, currentLang());
+        $path = rtrim(BASE_URL, '/') . '/' . staticPageUrl($page, currentLang());
         if ($params) {
             $path .= '?' . http_build_query($params);
         }
         return $path;
     }
 
-    if (BASE_URL === '') {
-        $path = $page === 'home' ? '/' : '/' . $page;
-        if ($params) {
-            $path .= '?' . http_build_query($params);
-        }
-        return $path;
+    $base = rtrim(BASE_URL, '/');
+    if ($page === 'home') {
+        $path = $base === '' ? '/' : $base . '/';
+    } else {
+        $path = ($base === '' ? '' : $base) . '/' . $page;
     }
-
-    $query = http_build_query(array_merge(['page' => $page], $params));
-    return BASE_URL . '/index.php?' . $query;
+    if ($params) {
+        $path .= '?' . http_build_query($params);
+    }
+    return $path;
 }
 
 function whatsappUrl(string $message): string

@@ -56,22 +56,6 @@ if ((!defined('STATIC_BUILD') || !STATIC_BUILD) && isPost() && verifyCsrf($_POST
                     <h4><?= e(__('contact_address_label')) ?></h4>
                     <p><?= e(CONTACT_ADDRESS) ?></p>
                 </div>
-
-                <div class="social-icons" style="margin-top:1.5rem;">
-                    <a href="<?= e(SOCIAL_FACEBOOK) ?>" target="_blank" rel="noopener">FB</a>
-                    <a href="<?= e(SOCIAL_INSTAGRAM) ?>" target="_blank" rel="noopener">IG</a>
-                    <a href="<?= e(SOCIAL_TIKTOK) ?>" target="_blank" rel="noopener">TT</a>
-                    <a href="<?= e(SOCIAL_YOUTUBE) ?>" target="_blank" rel="noopener">YT</a>
-                </div>
-
-                <div class="map-embed">
-                    <iframe
-                        src="https://maps.google.com/maps?q=Moratuwa+Sri+Lanka&output=embed"
-                        allowfullscreen
-                        loading="lazy"
-                        referrerpolicy="no-referrer-when-downgrade"
-                        title="Map"></iframe>
-                </div>
             </div>
 
             <div>

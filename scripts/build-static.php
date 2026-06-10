@@ -56,12 +56,34 @@ foreach ($langs as $langCode) {
 
     foreach ($allowedPages as $pageSlug) {
         $html = renderPage($pageSlug);
-        $filename = staticPageFilename($pageSlug, $langCode);
-        $path = $outputDir . DIRECTORY_SEPARATOR . $filename;
+        $relativePath = staticPagePath($pageSlug, $langCode);
+        $path = $outputDir . DIRECTORY_SEPARATOR . str_replace('/', DIRECTORY_SEPARATOR, $relativePath);
+        $dir = dirname($path);
+
+        if (!is_dir($dir)) {
+            mkdir($dir, 0755, true);
+        }
 
         file_put_contents($path, $html);
         $built++;
-        echo "Built {$filename}\n";
+        echo "Built {$relativePath}\n";
+    }
+}
+
+$legacyFiles = ['index-si.html'];
+foreach ($allowedPages as $pageSlug) {
+    if ($pageSlug === 'home') {
+        continue;
+    }
+    $legacyFiles[] = "{$pageSlug}.html";
+    $legacyFiles[] = "{$pageSlug}-si.html";
+}
+
+foreach ($legacyFiles as $legacyFile) {
+    $legacyPath = $outputDir . DIRECTORY_SEPARATOR . $legacyFile;
+    if (file_exists($legacyPath)) {
+        unlink($legacyPath);
+        echo "Removed legacy {$legacyFile}\n";
     }
 }
 

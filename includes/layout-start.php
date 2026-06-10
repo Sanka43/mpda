@@ -18,5 +18,8 @@
     <?php if (($page ?? '') === 'home'): ?>
     <link rel="stylesheet" href="<?= asset('css/home.css') ?>">
     <?php endif; ?>
+    <?php if (($page ?? '') === 'branches'): ?>
+    <link rel="stylesheet" href="<?= asset('css/classes.css') ?>">
+    <?php endif; ?>
 </head>
-<body class="site-theme<?= ($page ?? '') === 'home' ? ' page-home' : ' page-inner' ?>">
+<body class="site-theme<?= ($page ?? '') === 'home' ? ' page-home' : ' page-inner' ?><?= ($page ?? '') === 'branches' ? ' page-classes' : '' ?>">
